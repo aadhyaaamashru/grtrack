@@ -1,17 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { createElement } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { Books } from "./Books";
+import { Book } from "./Book";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+
+function BookList() {
+  const Dhundho = (id) => {
+    const p = Books.find((p) => p.id === id)
+    console.log(p)
+  }
+
+  return (
+    <div>
+    <h1> {"Today's Bestsellers"}</h1>
+    <section className='booklist'>
+      {/* <Myfnc /> */}
+      {Books.map((b, index) => {
+        console.log(b);
+        return (<Book {...b} findfunc={Dhundho} key={b.id} number={index}/>);
+      })}
+    </section>
+    </div>
+  );
+}
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<BookList />); //allways close it
